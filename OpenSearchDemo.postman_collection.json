@@ -1,0 +1,944 @@
+{
+	"info": {
+		"_postman_id": "bcf7f454-4072-45c2-8dcd-745a10e95fdc",
+		"name": "OPEN SEARCH Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3094806",
+		"_collection_link": "https://gold-star-322068.postman.co/workspace/New-Team-Workspace~f7b6534d-785e-42f6-ac02-53dc292b92a8/collection/3094806-bcf7f454-4072-45c2-8dcd-745a10e95fdc?action=share&source=collection_link&creator=3094806"
+	},
+	"item": [
+		{
+			"name": "never use",
+			"item": [
+				{
+					"name": "delete index",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9200/message_alias",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"message_alias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update cluster settings - disable threshold",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"transient\": { \"cluster.routing.allocation.disk.threshold_enabled\": false } }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/_cluster/settings",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_cluster",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update settings - allow delete",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"index.blocks.read_only_allow_delete\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/_all/_settings",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_all",
+								"_settings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "health",
+			"item": [
+				{
+					"name": "alive",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9200",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "node_health",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/_cluster/allocation/explain",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_cluster",
+								"allocation",
+								"explain"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "disk space allocation",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/_cat/allocation?v",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_cat",
+								"allocation"
+							],
+							"query": [
+								{
+									"key": "v",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index allocation stats",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/h2_thread/_stats",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"h2_thread",
+								"_stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index health",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/h2_thread_3/_stats",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"h2_thread_3",
+								"_stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "snapshots",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/_snapshot?pretty",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_snapshot"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cluster health by index",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/_cluster/health/h2_thread?pretty=true",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_cluster",
+								"health",
+								"h2_thread"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "message records",
+			"item": [
+				{
+					"name": "1a) create index",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"settings\": {\n    \"index\": {\n      \"number_of_shards\": 2,\n      \"number_of_replicas\": 1\n    }\n  },\n  \"mappings\": {\n    \"properties\": {\n      \"age\": {\n        \"type\": \"integer\"\n      }\n    }\n  },\n  \"aliases\": {\n    \"message_alias\": {}\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/message5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"message5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1b) add alias",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"actions\": [\n        {\n            \"add\": {\n                \"index\": \"message5\",\n                \"alias\": \"message_alias\",\n                \"is_write_index\": true\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/_aliases",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_aliases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1c) get aliases",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/_cat/aliases?v",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_cat",
+								"aliases"
+							],
+							"query": [
+								{
+									"key": "v",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1d) remove alias",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"actions\": [\n        {\n            \"remove\": {\n                \"index\": \"message\",\n                \"alias\": \"message_alias\"\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/_aliases",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_aliases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2) create mapping",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"properties\": {\n      \"id\": {\n        \"type\": \"keyword\"\n      },\n      \"createdAt\": {\n        \"type\": \"date\",\n        \"format\": \"strict_date_time\"\n      },\n      \"updatedAt\": {\n        \"type\": \"date\",\n        \"format\": \"strict_date_time\"\n      },\n      \"organizationId\": {\n        \"type\": \"keyword\"\n      },\n      \"body\": {\n        \"type\": \"text\"\n      },\n      \"attributedGoalId\": {\n        \"type\": \"keyword\"\n      },\n      \"threadId\": {\n        \"type\": \"keyword\"\n      },\n      \"userId\": {\n        \"type\": \"keyword\"\n      },\n      \"leadPhoneNumber\": {\n        \"type\": \"text\"\n      },\n      \"isInbound\": {\n        \"type\": \"boolean\"\n      },\n      \"latestSentimentScore\": {\n        \"type\": \"integer\"\n      }\n    }\n  }\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/message_alias/_mapping",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"message_alias",
+								"_mapping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4a) insert one",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"644adb8ec8e08aaa8943b262\",\n    \"createdAt\": \"2023-05-13T15:18:22.479Z\",\n    \"updatedAt\": \"2022-05-13T15:18:22.479Z\",\n    \"organizationId\": \"07BGbPLfkG\",\n    \"body\": \"there is a fire over there\",\n    \"attributedGoalId\": \"goal2\",\n    \"userId\": \"user1\",\n    \"leadPhoneNumber\": \"650-999-9999\",\n    \"isInbound\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/message_alias/_doc",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"message_alias",
+								"_doc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4b) insert one",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"644adb8ec8e08aaa8943b262\",\n    \"createdAt\": \"2023-05-13T15:18:22.479Z\",\n    \"updatedAt\": \"2022-05-13T15:18:22.479Z\",\n    \"organizationId\": \"07BGbPLfkG\",\n    \"body\": \"cats are cool\",\n    \"attributedGoalId\": \"goal2\",\n    \"userId\": \"user1\",\n    \"leadPhoneNumber\": \"650-999-9999\",\n    \"isInbound\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/message_alias/_doc",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"message_alias",
+								"_doc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4c) insert one",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"644adb8ec8e08aaa8943b262\",\n    \"createdAt\": \"2023-05-13T15:18:22.479Z\",\n    \"updatedAt\": \"2022-05-13T15:18:22.479Z\",\n    \"organizationId\": \"07BGbPLfkG\",\n    \"body\": \"hello cats\",\n    \"attributedGoalId\": \"goal2\",\n    \"userId\": \"user1\",\n    \"leadPhoneNumber\": \"650-999-9999\",\n    \"isInbound\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/message_alias/_doc",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"message_alias",
+								"_doc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5) get all records",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": {\n        \"bool\": {}\n    },\n    \"sort\": [\n        {\n            \"createdAt\": {\n                \"order\": \"desc\"\n            }\n        }\n    ],\n    \"size\": 20\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/message_alias/_search?track_total_hits=true",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"message_alias",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "track_total_hits",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5) search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"must\": [\n                {\n                    \"bool\": {\n                        \"should\": [\n                            {\n                                \"match_phrase\": {\n                                    \"body\": {\n                                        \"query\": \"fire\"\n                                    }\n                                }\n                            },\n                            {\n                                \"match_phrase\": {\n                                    \"body\": {\n                                        \"query\": \"strawberry ice cream\"\n                                    }\n                                }\n                            }\n                        ]\n                    }\n                },\n                {\n                    \"match\": {\n                        \"isInbound\": true\n                    }\n                },\n                {\n                    \"range\": {\n                        \"createdAt\": {\n                            \"gte\": \"2011-02-13T15:18:22.479Z\",\n                            \"lte\": \"2028-06-13T15:18:22.479Z\"\n                        }\n                    }\n                }\n            ]\n        }\n    },\n    \"sort\": [\n        {\n            \"createdAt\": {\n                \"order\": \"desc\"\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9200/message_alias/_search?track_total_hits=true",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"message_alias",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "track_total_hits",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
